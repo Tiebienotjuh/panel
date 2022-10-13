@@ -3,8 +3,8 @@ const { message } = require("../functions/language.js")
 
 const router = express.Router();
 
-router.use('*', (req, res) => {
-   res.send(message("404"));
-});
+router.get("/login", (req, res) => {
+    res.json({"": ""})
+})
 
 module.exports = router;
