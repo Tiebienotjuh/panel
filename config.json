@@ -1,4 +1,9 @@
 {
+    "application": {
+        "name": "Panel",
+        "version": "1.0.0",
+        "language": "en"
+    },
     "webserver": {
         "port": "8080",
         "host": "localhost",
@@ -11,6 +16,16 @@
             "key": "key",
             "secret": "secret",
             "maxAge": 86400000
+        }
+    },
+    "daemon": {
+        "port": "8081",
+        "host": "localhost",
+        "token": "supersecrettoken",
+        "ssl": {
+            "enabled": true,
+            "key": "server.key",
+            "cert": "server.crt"
         }
     }
 }
