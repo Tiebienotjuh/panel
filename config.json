@@ -27,5 +27,13 @@
             "key": "server.key",
             "cert": "server.crt"
         }
+    },
+    "database": {
+        "host": "localhost",
+        "port": "3306",
+        "user": "root",
+        "password": "password",
+        "database": "panel",
+        "charset": "utf8mb4"
     }
 }
