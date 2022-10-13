@@ -4,7 +4,7 @@ const { message } = require("../functions/language.js")
 const router = express.Router();
 
 router.get("/login", (req, res) => {
-    res.json({"": ""})
+    res.render("auth/login")
 })
 
 module.exports = router;

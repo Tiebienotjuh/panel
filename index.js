@@ -24,7 +24,7 @@ app.set("view engine", "ejs");
 
 fs.readdirSync('./routes/').filter((file) => file.endsWith('.js')).forEach((route) => {
     let routeName = route.split('.')[0];
-    app.use(`/${routeName}`, require(`./routes/${route}`));
+    app.use(require(`./routes/${route}`));
 })
 
 app.listen(config.webserver.port, () => {
