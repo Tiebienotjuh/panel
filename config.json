@@ -1,0 +1,16 @@
+{
+    "webserver": {
+        "port": "8080",
+        "host": "localhost",
+        "ssl": {
+            "enabled": true,
+            "key": "server.key",
+            "cert": "server.crt"
+        },
+        "session": {
+            "key": "key",
+            "secret": "secret",
+            "maxAge": 86400000
+        }
+    }
+}
