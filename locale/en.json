@@ -1,3 +1,4 @@
 {
-    "start": "Panel is up and running on %s"
+    "start": "Panel is up and running on %s",
+    "404": "Page not found"
 }

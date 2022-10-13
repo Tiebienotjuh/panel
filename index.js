@@ -1,5 +1,8 @@
 const express = require("express");
 const session = require("express-session")
+
+const fs = require("fs");
+
 const config = require("./config.json")
 const { message } = require("./functions/language.js")
 
@@ -17,6 +20,11 @@ app.use(session({
 
 app.use(express.static(__dirname + '/public'));
 app.set("view engine", "ejs");
+
+fs.readdirSync('./routes/').filter((file) => file.endsWith('.js')).forEach((route) => {
+    let routeName = route.split('.')[0];
+    app.use(`/${routeName}`, require(`./routes/${route}`));
+})
 
 app.listen(config.webserver.port, () => {
     console.log(message("start"), `${config.webserver.ssl.enabled ? 'https://' : 'http://'}${config.webserver.host}:${config.webserver.port}`);
