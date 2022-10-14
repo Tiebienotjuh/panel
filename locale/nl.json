@@ -1,4 +1,11 @@
 {
     "start": "Paneel is online op %s",
-    "404": "Pagina niet gevonden"
+    "404": "Pagina niet gevonden",
+    "login": "Login",
+    "register": "Registreer",
+    "username": "Email of gebruikersnaam",
+    "password": "Wachtwoord",
+    "forgotPassword": "Wachtwoord vergeten?",
+    "dontHaveAccount": "Heb je nog een account?",
+    "signUpHere": "Registreer hier!"
 }

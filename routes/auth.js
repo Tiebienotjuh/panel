@@ -5,11 +5,11 @@ const { message } = require("../functions/language.js")
 const router = express.Router()
 
 router.get("/login", (req, res) => {
-    res.render("auth/login", {title: "Login", session: session})
+    res.render("auth/login", {title: message("Login"), m: message})
 })
 
 router.get("/register", (req, res) => {
-    res.render("auth/register", {title: "Register", session: session})
+    res.render("auth/register", {title: message("Register"), m: message})
 })
 
 module.exports = router

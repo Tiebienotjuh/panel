@@ -23,7 +23,6 @@ app.use(express.static(__dirname + '/public'));
 app.set("view engine", "ejs");
 
 fs.readdirSync('./routes/').filter((file) => file.endsWith('.js')).forEach((route) => {
-    let routeName = route.split('.')[0];
     app.use(require(`./routes/${route}`));
 })
 
