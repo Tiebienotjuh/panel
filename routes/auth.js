@@ -8,4 +8,8 @@ router.get("/login", (req, res) => {
     res.render("auth/login", {title: "Login", session: session})
 })
 
+router.get("/register", (req, res) => {
+    res.render("auth/register", {title: "Register", session: session})
+})
+
 module.exports = router
