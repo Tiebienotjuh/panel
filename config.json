@@ -19,11 +19,10 @@
         }
     },
     "database": {
-        "host": "mysql",
+        "host": "database",
         "port": "3306",
         "user": "root",
         "password": "password",
-        "database": "panel",
-        "charset": "utf8mb4"
+        "database": "panel"
     }
 }

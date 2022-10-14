@@ -7,7 +7,6 @@ var db = mysql.createConnection({
     user: config.database.user,
     password: config.database.password,
     database: config.database.database,
-    charset: config.database.charset,
 });
 
 db.connect(
