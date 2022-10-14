@@ -3,9 +3,14 @@
     "404": "Page not found",
     "login": "Login",
     "register": "Register",
-    "username": "Email or Username",
+    "username": "Username",
+    "email": "Email",
     "password": "Password",
     "forgotPassword": "Forgot password?",
     "dontHaveAccount": "Don't have an account?",
-    "signUpHere": "Sign up here"
+    "alreadyHaveAccount": "Already have an account?",
+    "loginHere": "Login here",
+    "signUpHere": "Sign up here",
+
+    "or": "of"
 }
