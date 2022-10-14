@@ -15,9 +15,11 @@ services:
     image: mysql
     environment:
       MYSQL_DATABASE: 'panel'
+      MYSQL_USER: 'root'
+      MYSQL_PASSWORD: 'password'
       MYSQL_ROOT_PASSWORD: 'password'
     volumes:
       - ../mysql-data:/var/lib/mysql
-    expose:
-      - 3306
+    ports:
+      - 8081:3306
     restart: always
