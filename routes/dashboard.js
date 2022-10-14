@@ -1,5 +1,5 @@
 const express = require("express")
-const session - require("express-session")
+const session = require("express-session")
 const { message } = require("../functions/language.js")
 
 const router = express.Router()
