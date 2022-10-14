@@ -6,7 +6,7 @@
     },
     "webserver": {
         "port": "8080",
-        "host": "localhost",
+        "host": "127.0.0.1",
         "ssl": {
             "enabled": true,
             "key": "server.key",
@@ -18,18 +18,8 @@
             "maxAge": 86400000
         }
     },
-    "daemon": {
-        "port": "8081",
-        "host": "localhost",
-        "token": "supersecrettoken",
-        "ssl": {
-            "enabled": true,
-            "key": "server.key",
-            "cert": "server.crt"
-        }
-    },
     "database": {
-        "host": "localhost",
+        "host": "mysql",
         "port": "3306",
         "user": "root",
         "password": "password",

@@ -8,3 +8,14 @@ services:
     volumes:
       - ./:/usr/src/app
     restart: always
+    depends_on:
+      - mysql
+
+  mysql:
+    image: mysql
+    environment:
+      MYSQL_DATABASE: 'panel'
+      MYSQL_ROOT_PASSWORD: 'password'
+    volumes:
+      - ../mysql-data:/var/lib/mysql
+    restart: always
