@@ -5,7 +5,7 @@ const fs = require("fs");
 
 const config = require("./config.json")
 const { message } = require("./functions/language.js")
-const { db } = require("./functions/storage.js")
+const { db } = require("./functions/database.js")
 
 var app = express();
 
@@ -24,6 +24,14 @@ app.set("view engine", "ejs");
 
 fs.readdirSync('./routes/').filter((file) => file.endsWith('.js')).forEach((route) => {
     app.use(require(`./routes/${route}`));
+})
+
+app.get("/", (req, res) => {
+    if (session.loggedin) {
+        res.render("/dashboard", {title: "Dashboard"})
+    } else {
+        res.redirect("/login")
+    }
 })
 
 app.listen(config.webserver.port, () => {

@@ -1,15 +1,14 @@
 const express = require("express")
-const session = require("express-session")
 const { message } = require("../functions/language.js")
+const { loggedin } = require("../functions/loggedin");
+const config = require("../config.json")
 
 const router = express.Router()
 
-router.get("/dashboard", (res, req) => {
-    if (session.loggedin) {
-        res.render("dasboard/dasboard", {title: "Dashboard", session: session})
-    } else {
-        res.redirect("/login")
-    }
+router.get("/dashboard", (req, res) => {
+    loggedin(req, res, () => {
+        res.render("dashboard/dashboard", {title: "Dashboard", m: message, pannelname: config.application.name})
+    })
 })
 
 module.exports = router
