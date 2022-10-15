@@ -3,14 +3,15 @@ version: "3"
 services:
   database:
     image: mysql
+    command: --default-authentication-plugin=mysql_native_password
     environment:
       MYSQL_DATABASE: 'panel'
       MYSQL_ROOT_PASSWORD: 'password'
     volumes:
       - ./database:/var/lib/mysql
-    ports:
-      - 8081:3306
     restart: always
+    healthcheck:
+      test: "exit 0"
 
   panel:
     build: ./
@@ -20,4 +21,5 @@ services:
       - ./:/usr/src/app
     restart: always
     depends_on:
-      - database
+      database:
+        condition: service_healthy
