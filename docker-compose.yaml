@@ -1,6 +1,17 @@
 version: "3"
 
 services:
+  database:
+    image: mysql
+    environment:
+      MYSQL_DATABASE: 'panel'
+      MYSQL_ROOT_PASSWORD: 'password'
+    volumes:
+      - ./database:/var/lib/mysql
+    ports:
+      - 8081:3306
+    restart: always
+
   panel:
     build: ./
     ports:
@@ -10,16 +21,3 @@ services:
     restart: always
     depends_on:
       - database
-
-  database:
-    image: mysql
-    environment:
-      MYSQL_DATABASE: 'panel'
-      MYSQL_USER: 'root'
-      MYSQL_PASSWORD: 'password'
-      MYSQL_ROOT_PASSWORD: 'password'
-    volumes:
-      - ../mysql-data:/var/lib/mysql
-    ports:
-      - 8081:3306
-    restart: always
