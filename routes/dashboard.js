@@ -11,7 +11,7 @@ router.get("/dashboard", (req, res) => {
     req.session.loggedin = true
     req.session.userid = 1
     loggedin(req, res, () => {
-        let sql = mysql.format("SELECT * FROM servers WHERE id = ?", [req.session.userid]);
+        let sql = mysql.format("SELECT * FROM servers WHERE user_id = ?", [req.session.userid]);
         db.query(sql, function (err, data) {
             if (err) throw err;
             res.render("dashboard/dashboard", {title: "Dashboard", m: message, panelname: config.application.name, servers: data})
