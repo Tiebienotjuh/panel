@@ -1,5 +1,4 @@
 const express = require("express")
-const session = require("express-session")
 const fs = require("fs");
 const { message } = require("../functions/language.js")
 
