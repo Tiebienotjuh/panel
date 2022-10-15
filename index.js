@@ -27,6 +27,14 @@ fs.readdirSync('./routes/').filter((file) => file.endsWith('.js')).forEach((rout
     app.use(require(`./routes/${route}`));
 })
 
+app.get("/", (req, res) => {
+    if (session.loggedin) {
+        res.render("/dashboard", {title: "Dashboard"})
+    } else {
+        res.redirect("/login")
+    }
+})
+
 app.listen(config.webserver.port, () => {
     console.log(message("start"), `${config.webserver.ssl.enabled ? 'https://' : 'http://'}${config.webserver.host}:${config.webserver.port}`);
 });
