@@ -1,4 +1,16 @@
 {
     "start": "Panel is up and running on %s",
-    "404": "Page not found"
+    "404": "Page not found",
+    "login": "Login",
+    "register": "Register",
+    "username": "Username",
+    "email": "Email",
+    "password": "Password",
+    "forgotPassword": "Forgot password?",
+    "dontHaveAccount": "Don't have an account?",
+    "alreadyHaveAccount": "Already have an account?",
+    "loginHere": "Login here",
+    "signUpHere": "Sign up here",
+
+    "or": "of"
 }

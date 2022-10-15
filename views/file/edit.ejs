@@ -1,0 +1,36 @@
+<textarea id='editor'>
+<%= data %>
+</textarea>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.52.2/codemirror.min.css"></link>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.52.2/theme/monokai.min.css"></link>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.52.2/codemirror.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.52.2/mode/javascript/javascript.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script>
+    var editor = CodeMirror.fromTextArea(document.getElementById('editor'), {
+        lineNumbers: true,
+        autoRefresh: true,
+        autoCloseBrackets: true,
+        matchBrackets: true,
+        codeFold: true,
+        tabSize: 4,
+        theme: "monokai",
+    });
+    CodeMirror.commands.save = async function(editor) {
+        console.log(editor.getValue());
+        await fetch('<%= node %>/file/save/<%= uuid %>', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Token'
+            },
+            body: JSON.stringify({
+                data: editor.getValue(),
+                file: '<%= file %>',
+                path: '<%= path %>'
+            })
+        });
+    };
+</script>
