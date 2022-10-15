@@ -1,11 +1,10 @@
 const express = require("express");
 const session = require("express-session")
-
 const fs = require("fs");
-
 const config = require("./config.json")
 const { message } = require("./functions/language.js")
 const { db } = require("./functions/database.js")
+const { loggedin } = require("./functions/loggedin");
 
 var app = express();
 
@@ -27,11 +26,9 @@ fs.readdirSync('./routes/').filter((file) => file.endsWith('.js')).forEach((rout
 })
 
 app.get("/", (req, res) => {
-    if (session.loggedin) {
-        res.render("/dashboard", {title: "Dashboard"})
-    } else {
-        res.redirect("/login")
-    }
+    loggedin(req, res, () => {
+        res.redirect("/dashboard")
+    })
 })
 
 app.listen(config.webserver.port, () => {

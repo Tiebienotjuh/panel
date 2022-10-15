@@ -1,7 +1,7 @@
 const mysql = require("mysql");
 const config = require("../config.json");
 
-var db = mysql.createConnection({
+db = mysql.createConnection({
     host: config.database.host,
     port: config.database.port,
     user: config.database.user,
