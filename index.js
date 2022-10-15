@@ -3,7 +3,7 @@ const session = require("express-session")
 const fs = require("fs");
 const config = require("./config.json")
 const { message } = require("./functions/language.js")
-const { db } = require("./functions/database.js")
+const db  = require("./functions/database.js")
 const { loggedin } = require("./functions/loggedin");
 
 var app = express();

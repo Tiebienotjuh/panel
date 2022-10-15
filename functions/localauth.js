@@ -8,14 +8,14 @@ module.exports = function(passport) {
 	
     passport.use('local-register', new LocalStrategy({usernameField : 'email', passwordField : 'password', passReqToCallback : true}, 
     function(req, email, password, done) {
-        db.query("SELECT * `mail` FROM users WHERE mail = ? ", [email.toLowerCase()], function (error, results) {
+        db.query("SELECT * `email` FROM users WHERE mail = ? ", [email.toLowerCase()], function (error, results) {
             if (error) return done(error);
             if (results[0]) {
                 return done(null, false);
             } else {
                 let salt = crypto.randomBytes(32).toString('hex');
                 let hash = crypto.pbkdf2Sync(password, salt, 10000, 60, 'sha512').toString('hex');
-                db.query("INSERT INTO `users`(`mail`, `hash`, `salt`, `username`) VALUES(?, ?, ?, ?)", [email, hash, salt, password],
+                db.query("INSERT INTO `users`(`email`, `hash`, `salt`, `username`) VALUES(?, ?, ?, ?)", [email, hash, salt, password],
                 function (error, results) {
                     if (error) return done(error);
                     return done(null, results[0]);
@@ -32,7 +32,7 @@ module.exports = function(passport) {
 
     passport.use('local-login', new LocalStrategy({usernameField : 'email',passwordField : 'password',passReqToCallback : true},
     function(req, email, password, done) {
-        db.query("SELECT * `mail`, `username`, `hash`, `salt`, `id` FROM users WHERE mail = ? ", [email.toLowerCase()], function (error, results) {
+        db.query("SELECT * `email`, `username`, `hash`, `salt`, `id` FROM users WHERE mail = ? ", [email.toLowerCase()], function (error, results) {
             if (error) return done(error);
 			if(!results[0]) return done(null, false);
 

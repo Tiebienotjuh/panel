@@ -8,8 +8,6 @@ function get(key) {
     return lang[key];
 }
 
-
-
 module.exports = {
-    message
+    get
 }

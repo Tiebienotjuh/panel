@@ -3,7 +3,7 @@ const mysql = require("mysql")
 const { message } = require("../functions/language.js")
 const { loggedin } = require("../functions/loggedin.js");
 const config = require("../config.json")
-const { db } = require("../functions/database.js")
+const db = require("../functions/database.js")
 
 const router = express.Router()
 
