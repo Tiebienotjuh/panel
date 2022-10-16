@@ -1,5 +1,6 @@
 const express = require("express");
 const session = require("express-session")
+const passport = require("passport");
 
 const fs = require("fs");
 
@@ -18,6 +19,9 @@ app.use(session({
         maxAge: config.webserver.session.maxAge,
     }
 }));
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use(express.static(__dirname + '/public'));
 app.set("view engine", "ejs");
