@@ -1,13 +1,11 @@
 const express = require("express");
-const session = require("express-session")
+const session = require("express-session");
 const passport = require("passport");
-
 const fs = require("fs");
 
 const config = require("./config.json")
 const { message } = require("./functions/language.js")
-const { db } = require("./functions/database.js")
-
+const db = require("./functions/database.js")
 var app = express();
 
 app.use(session({
@@ -30,13 +28,9 @@ fs.readdirSync('./routes/').filter((file) => file.endsWith('.js')).forEach((rout
     app.use(require(`./routes/${route}`));
 })
 
-app.get("/", (req, res) => {
-    if (session.loggedin) {
-        res.render("/dashboard", {title: "Dashboard"})
-    } else {
-        res.redirect("/login")
-    }
-})
+app.get("*", (req, res) => {
+    res.render("404", {title: "404", m: message})
+});
 
 app.listen(config.webserver.port, () => {
     console.log(message("start"), `${config.webserver.ssl.enabled ? 'https://' : 'http://'}${config.webserver.host}:${config.webserver.port}`);
