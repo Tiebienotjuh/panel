@@ -7,7 +7,7 @@ const { isAuth } = require("../functions/auth.js");
 
 const router = express.Router()
 
-app.get("/", isAuth, (req, res) => {
+router.get("/", isAuth, (req, res) => {
     res.redirect('/dashboard')
 });
 

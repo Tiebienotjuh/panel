@@ -29,7 +29,7 @@ fs.readdirSync('./routes/').filter((file) => file.endsWith('.js')).forEach((rout
 })
 
 app.get("*", (req, res) => {
-    res.render("404", {title: "404", m: message})
+    res.render("general/404", {title: message("404"), m: message})
 });
 
 app.listen(config.webserver.port, () => {
