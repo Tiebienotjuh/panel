@@ -4,12 +4,17 @@
     "login": "Login",
     "register": "Register",
     "username": "Username",
-    "email": "Email",
+    "mail": "Email",
     "password": "Password",
     "forgotPassword": "Forgot password?",
     "dontHaveAccount": "Don't have an account?",
     "alreadyHaveAccount": "Already have an account?",
     "loginHere": "Login here",
     "signUpHere": "Sign up here",
-    "or": "or"
+    "or": "or",
+    "registerSuccess": "You have successfully registered. You can now login.",
+    "loginSuccess": "You have successfully logged in.",
+    "logoutSuccess": "You have successfully logged out.",
+    "invalidCredentials": "Invalid credentials.",
+    "mailAlreadyExists": "This email is already in use."
 }

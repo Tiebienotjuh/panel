@@ -2,6 +2,7 @@ const express = require("express");
 const session = require("express-session");
 const passport = require("passport");
 const bodyParser = require("body-parser");
+const flash = require('connect-flash');
 const db = require("./functions/database.js");
 const fs = require("fs");
 
@@ -28,6 +29,8 @@ app.use(passport.session());
 app.use(express.static(__dirname + '/public'));
 app.set("view engine", "ejs");
 
+app.use(flash());
+
 fs.readdirSync('./routes/').filter((file) => file.endsWith('.js')).forEach((route) => {
     app.use(require(`./routes/${route}`));
 })
@@ -36,7 +39,7 @@ app.get("*", (req, res) => {
     res.render("general/404", {title: message("404"), m: message})
 });
 
-fs.exists("./database", (exists) => {
+fs.exists("./database/panel/users.ibd", (exists) => {
     if (!exists) {
         let sql = [
             "CREATE TABLE `users`(`id` INT NOT NULL AUTO_INCREMENT, `admin` INT NULL, `username` VARCHAR(255) NOT NULL, `mail` VARCHAR(255) NOT NULL, `hash` VARCHAR(255) NOT NULL, `salt` VARCHAR(255) NOT NULL, PRIMARY KEY (`id`));",

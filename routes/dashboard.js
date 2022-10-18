@@ -11,7 +11,7 @@ router.get("/", isAuth, (req, res) => {
 });
 
 router.get("/dashboard", isAuth, (req, res) => {
-    res.render("dashboard/dashboard", {title: "Dashboard", m: message, app: config.application})
+    res.render("dashboard/dashboard", {title: "Dashboard", m: message, app: config.application, flash: req.flash()})
 });
 
 router.get("/dashboard", isAuth, (req, res) => {
