@@ -10,7 +10,6 @@ const router = express.Router()
 
 // load frontand page
 router.get("/login", (req, res) => {
-  if(req.query.error) req.flash("red", message("invalidCredentials"));
 	res.render("auth/login", {
     title: message("login"),
 		m: message,
@@ -31,7 +30,7 @@ passport.serializeUser((user, done) => done(null, user));
 passport.deserializeUser((obj, done) => done(null, obj));
 
 
-let localCallback = (username, password, done) => {
+let localCallback = (req, username, password, done) => {
 	db.query("SELECT `mail`, `username`, `hash`, `salt`, `id` FROM `users` WHERE mail = ? or username = ?", [username.toLowerCase(), username], function(error, results) {
 		if (error) return done(error);
 		if (results[0]) {
@@ -42,9 +41,9 @@ let localCallback = (username, password, done) => {
 					username: results[0].username,
 					mail: results[0].mail
 				};
-				return done(null, user);
+				return done(null, user, req.flash("green", message("loginSuccess")));
 			}
-			return done(null, false);
+			return done(null, false, req.flash("red", message("invalidCredentials")));
 		}
 		return done(null, false);
 	});
@@ -53,6 +52,7 @@ let localCallback = (username, password, done) => {
 let customFields = {
 	usernameField: "mail",
 	passwordField: "password",
+	passReqToCallback: true,
 };
 
 const local = new Local(customFields, localCallback);
@@ -60,7 +60,7 @@ passport.use(local);
 
 router.post("/api/signin", passport.authenticate("local", {
 	successRedirect: "/dashboard",
-	failureRedirect: "/login?error=true",
+	failureRedirect: "/login",
 }));
 
 router.post("/api/signup", (req, res, next) => {

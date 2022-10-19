@@ -9,9 +9,9 @@
 <div id="alerts"></div>
 <% if(flash != '{}') {%>
     <%for (let msg in flash) {
-        if(msg === 'green' || msg === 'red' ||  msg === 'blue') {%>
+        if(msg === 'red' || msg === 'red' ||  msg === 'blue') {%>
             <script>
-                ohsnap('<%= flash[msg] %>', {color: '<%= msg %>'});
+                ohSnap('<%= flash[msg] %>', {color: '<%= msg %>'});
             </script>
         <%}%>
     <%}%>

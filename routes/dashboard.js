@@ -11,13 +11,9 @@ router.get("/", isAuth, (req, res) => {
 });
 
 router.get("/dashboard", isAuth, (req, res) => {
-    res.render("dashboard/dashboard", {title: "Dashboard", m: message, app: config.application, flash: req.flash()})
-});
-
-router.get("/dashboard", isAuth, (req, res) => {
-    db.query("SELECT * FROM servers WHERE ownerid = ?", [req.user.id], function (err, data) {
+    db.query("SELECT * FROM servers WHERE ownerid = ?", [req.user.id], function (err, results) {
         if (err) throw err;
-        res.render("dashboard/dashboard", {title: "Dashboard", m: message, app: config.application, servers: data})
+        res.render("dashboard/dashboard", {title: "Dashboard", m: message, app: config.application, flash: req.flash(), servers: results})
     });
 });
 

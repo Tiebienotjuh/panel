@@ -2,5 +2,11 @@
     <%- include ("head.ejs") %>    
     <body class="bg-[#0F1032] text-neutral-100">
         <%- include ("navbar.ejs") %>
+        <% console.log(servers) %>
+        <% for(let i = 0; i < servers.length; i++) {%>
+            <p> ID: <%=servers[i].id%></p>
+            <p> Name: <%=servers[i].name%></p>
+            <p> Location: <%=servers[i].location%></p>
+        <%}%>
     </body>
 </html>
